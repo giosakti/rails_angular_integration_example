@@ -7,17 +7,22 @@ gem 'rails', '3.2.12'
 
 gem 'sqlite3'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  # HTML & CSS replacement
+  gem 'haml-rails', '~> 0.4'
+  gem 'sass-rails', '~> 3.2.6'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  # JS replacement
+  gem 'coffee-rails', '~> 3.2.2'
 
-  gem 'uglifier', '>= 1.0.3'
+  # JS interpreter
+  gem 'therubyracer', '~> 0.11.3',  platform: :ruby
+  gem 'therubyrhino', '~> 2.0.2',   platform: :jruby
+
+  # Misc
+  gem 'uglifier', '~> 1.3.0'    # wrapper for UglifyJS JavaScript compressor
 end
 
 gem 'jquery-rails'
