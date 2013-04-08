@@ -1,0 +1,10 @@
+<ul>
+  <li ng-repeat="task in tasks">
+    Title: {{task.title}} <br/>
+    Description: {{task.description}}
+    <a href="/tasks/{{task.id}}/edit">Ubah</a>
+    <a href="" ng-click="destroy(task.id)">Hapus</a>
+  </li>
+</ul>
+
+<a href="/tasks/new">Add new task</a>

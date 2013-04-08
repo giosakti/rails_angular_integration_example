@@ -15,3 +15,28 @@ app.config ($stateProvider, $urlRouterProvider) ->
         "":
           controller: "ApplicationController"
           templateUrl: "/assets/layouts/default.html.erb"
+
+    # Tasks
+    .state "tasks",
+      parent: "default"
+      url: "/tasks"
+      views:
+        "":
+          controller: "TasksController"
+          templateUrl: "/assets/tasks/index.html.erb"
+
+    .state "new",
+      parent: "tasks"
+      url: "/new"
+      views:
+        "@default":
+          controller: "TasksController"
+          templateUrl: "/assets/tasks/new.html.erb"
+
+    .state "edit",
+      parent: "tasks"
+      url: "/:id/edit"
+      views:
+        "@default":
+          controller: "TasksController"
+          templateUrl: "/assets/tasks/edit.html.erb"
