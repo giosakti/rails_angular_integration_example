@@ -5,4 +5,8 @@ ProjectOne::Application.routes.draw do
     resources :tasks
   end
 
+  # Passthrough to frontend
+  match '/' => 'home#index'
+  match '/tasks' => 'home#index'
+  match '/tasks/*page' => 'home#index'
 end
