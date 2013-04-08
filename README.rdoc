@@ -2,3 +2,4 @@
 This repo provide example of Rails and AngularJS integration step-by-step (see the tags). This repo will be updated everytime I post new essay on my web.
 
 part 1: http://mightygio.com/2013/03/integrating-rails-and-angularjs-part-1-structure/
+part 2: http://mightygio.com/2013/04/integrating-rails-and-angularjs-part-2-model-view-win-controllers-and-routes/
