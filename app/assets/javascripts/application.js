@@ -12,4 +12,5 @@
 //
 //= require angular
 //= require app/main
+//= require_tree ./config
 //= require_self
