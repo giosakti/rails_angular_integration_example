@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require angular
+//= require angular-ui-states
 //= require app/main
 //= require_tree ./config
 //= require_self
