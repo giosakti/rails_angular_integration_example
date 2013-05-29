@@ -11,6 +11,10 @@ class Api::TasksController < Api::BaseController
     respond_with :api, Task.create(params[:task])
   end
 
+  def edit
+    respond_with :api, Task.find(params[:id])
+  end
+
   def update
     respond_with :api, Task.update(params[:id], params[:task])
   end
