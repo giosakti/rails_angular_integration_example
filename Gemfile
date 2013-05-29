@@ -25,7 +25,7 @@ group :assets do
   gem 'uglifier', '~> 1.3.0'    # wrapper for UglifyJS JavaScript compressor
 end
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
