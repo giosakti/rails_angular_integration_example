@@ -1,79 +1,102 @@
-app.controller "TasksController", ($scope, $http, $location, $state, $stateParams) ->
+app.controller "TasksController", ($scope, $http, $location, $state, $stateParams, Task) ->
 
   # =========================================================================
   # Initialize
   # =========================================================================
 
   $scope.tasks = {}
-  if $state.current.name == 'tasks'
-    $http.get("/api/tasks"
-
-    # success
-    ).then ((response) ->
-      $scope.tasks = response.data
-    
-    # failure
-    ), (error) ->
-
   $scope.task = {}
-  if $state.current.name == 'edit'
-    $http.get("/api/tasks/#{$stateParams['id']}"
 
-    # success
-    ).then ((response) ->
-      $scope.task = response.data
+  # =========================================================================
+  # Show
+  # =========================================================================
 
-    # failure
-    ), (error) ->
+  if $state.current.name == 'tasks'
+    Task.query(
+      {}
+      
+      # Success
+    , (response) ->
+      $scope.tasks = response
+
+      # Error
+    , (response) ->
+    )
+
+  if $state.current.name == 'show'
+    Task.get
+      id: $stateParams['id']
+
+      # Success
+    , (response) ->
+      $scope.task = response
+
+      # Error
+    , (response) ->
 
   # =========================================================================
   # Create
   # =========================================================================
 
   $scope.create = ->
-    $http.post("/api/tasks",
-      task:
+    Task.save(
+      {}
+    , task:
         title: $scope.task.title
         description: $scope.task.description
 
-    # success
-    ).then ((response) ->
+      # Success
+    , (response) ->
       $location.path "/tasks"
 
-    # failure
-    ), (error) ->
+      # Error
+    , (response) ->
+    )
 
   # =========================================================================
   # Update
   # =========================================================================
 
+  if $state.current.name == 'edit'
+    Task.get
+      id: $stateParams['id']
+
+      # Success
+    , (response) ->
+      $scope.task = response
+
+      # Error
+    , (response) ->
+
   $scope.update = ->
-    $http.put("/api/tasks/#{$scope.task.id}",
-      task:
+    Task.update
+      id: $stateParams['id']
+    , task:
         title: $scope.task.title
         description: $scope.task.description
 
-    # success
-    ).then ((response) ->
+      # Success
+    , (response) ->
       $location.path "/tasks"
 
-    # failure
-    ), (error) ->
+      # Error
+    , (response) ->
 
   # =========================================================================
   # Destroy
   # =========================================================================
 
   $scope.destroy = (id) ->
-    $http.delete("/api/tasks/#{id}"
+    Task.delete
+      id: id
 
-    # success
-    ).then ((response) ->
-      $http.get("/api/tasks").then ((response) ->
-        $scope.tasks = response.data
-      ), (error) ->
+      # Success
+    , (response) ->
+      i = 0
+      while i < $scope.tasks.length
+        if $scope.tasks[i]['id'] is id
+          $scope.tasks.splice(i,1)
+        i++
 
-    # failure
-    ), (error) ->
-
-  return false
+      # Error
+    , (response) ->
